@@ -1,6 +1,9 @@
 import React from "react";
+import { formatNumberWithCommas } from '../../utils';
 
-function Pagination() {
+function Pagination({ meta }) {
+  const { current_page = '', last_page = '' } = meta;
+
   return (
     <div className="font-euclidcircularb pagination flex justify-between items-center mb-8">
       <button className="flex items-center cursor-pointer pointer-events-none">
@@ -20,7 +23,9 @@ function Pagination() {
           Previous
         </span>
       </button>
-      <span className="ml-3 text-sm leading-9 text-666666">1 of 7622 </span>
+      <span className="ml-3 text-sm leading-9 text-666666">
+        {formatNumberWithCommas(current_page)} of {formatNumberWithCommas(last_page)}
+      </span>
       <button className="flex items-center cursor-pointer">
         <span className="mx-3 text-sm leading-9 text-333333">Next</span>
         <svg

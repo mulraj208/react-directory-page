@@ -1,12 +1,36 @@
-import React from "react";
-import CarCard from "../components/directory-page/CarCard";
+import React, { useMemo, useEffect, useState } from "react";
 import Search from "../components/directory-page/Search";
-import Results from "../components/directory-page/Results";
+import PriceStats from "../components/directory-page/PriceStats";
 import Pagination from "../components/directory-page/Pagination";
+import CarCardList from "../components/directory-page/CarCardList";
+import { formatNumberWithCommas } from '../utils';
 import "../scss/directory-page.scss";
 
+const API_URL =
+  "http://directory-api-staging.testingpe.com/api/wheels-directory/v1/deals";
+
 function Directory() {
-  const cards = Array(10).fill(undefined);
+  const [cars, setCars] = useState([]);
+  const [priceStats, setPriceStats] = useState({});
+  const [meta, setMeta] = useState({});
+  const totalResults = useMemo(() => {
+    return meta && meta.total
+      ? formatNumberWithCommas(meta.total)
+      : "";
+  }, [meta]);
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((res) => {
+        const { data, price_stats, meta } = res;
+        console.log(res);
+        setCars(data);
+        setPriceStats(price_stats);
+        setMeta(meta);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div id="directory-page">
@@ -19,13 +43,9 @@ function Directory() {
           <Search />
         </div>
         <div className="right-rail">
-          <Results />
-          <div className="flex flex-col md:flex-row md:flex-wrap lg:justify-between xl:justify-start">
-            {cards.map((item, index) => (
-              <CarCard key={index} />
-            ))}
-          </div>
-          <Pagination />
+          <PriceStats data={priceStats} totalResults={totalResults} />
+          <CarCardList {...{ cars }} />
+          <Pagination meta={meta} />
         </div>
       </div>
     </div>
