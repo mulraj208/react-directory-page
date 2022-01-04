@@ -1,0 +1,156 @@
+#directory-page {
+  max-width: 1310px;
+  margin: 0 auto;
+
+  .expand {
+    max-height: 2500px;
+  }
+
+  .expand > span > svg {
+    transform: rotate(180deg);
+  }
+
+  .horizontal-line {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90.11deg, #eb504f 2.71%, #ed805c 99.94%);
+    opacity: 0.6;
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .sort-button {
+    select::-ms-expand {
+      display: none;
+    }
+  }
+
+  .mobile-search {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90.11deg, #eb504f 2.71%, #ed805c 99.94%);
+      opacity: 0.6;
+      top: 0px;
+      left: 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+  }
+  .content {
+    p {
+      margin-bottom: 30px;
+    }
+  }
+  .car-card {
+    border-color: #e9e7e7;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    .car-img {
+      height: 176px;
+      width: 100%;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      background-color: #e2e8f0;
+      background-color: #e2e8f0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      background-position: 50%;
+    }
+
+    .photos-button {
+      background: rgba(51, 51, 51, 0.5);
+    }
+
+    .car-title {
+      height: 64px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @screen md {
+      width: 100%;
+      .car-img {
+        height: 200px;
+      }
+
+      .car-title {
+        height: 52px;
+      }
+    }
+
+    @screen lg {
+      max-width: 49%;
+    }
+
+    @screen xl {
+      max-width: 31.94%; //do not change the percentage
+      margin-right: 2.09%; //do not change the percentage
+      &:nth-of-type(3n) {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  @screen md {
+    .left-rail {
+      max-width: 305px;
+      margin-right: 20px;
+      width: 100%;
+    }
+
+    .right-rail {
+      max-width: 955px;
+      width: 100%;
+    }
+
+    .sort-button {
+      max-width: 258px;
+      width: 100%;
+      position: relative;
+      select {
+        appearance: none;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        right: 12px;
+        top: 20px;
+        width: 10px;
+        height: 5px;
+        background-repeat: no-repeat;
+        background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iNiIgdmlld0JveD0iMCAwIDEwIDYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMC42ODM0MjIgMC41MDA2OTZDMC45OTkwMzYgMC4yMTYxNzMgMS40Nzg2MyAwLjIxNjE3MyAxLjc5NDI0IDAuNTAwNjk3TDUgMy4zOTA2N0w4LjIwNTc2IDAuNTAwNjk3QzguNTIxMzggMC4yMTYxNzMgOS4wMDA5NyAwLjIxNjE3MyA5LjMxNjU4IDAuNTAwNjk2QzkuNjgyMDIgMC44MzAxNDIgOS42ODIwMiAxLjQwMzQ1IDkuMzE2NTggMS43MzI4OUw1IDUuNjI0MjZMMC42ODM0MjEgMS43MzI4OUMwLjMxNzk3NyAxLjQwMzQ1IDAuMzE3OTc3IDAuODMwMTQxIDAuNjgzNDIyIDAuNTAwNjk2WiIgZmlsbD0iIzQ2NTdBMSIvPg0KPC9zdmc+DQo=");
+        cursor: pointer;
+      }
+    }
+  }
+
+  .rounded .label {
+    font-size: 8px;
+    top: 4px;
+  }
+
+  .rounded .selected {
+    padding: 14px 10px;
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .rounded .up-arrow {
+    bottom: 10px;
+  }
+
+  @screen xl {
+    .rounded .down-arrow {
+      bottom: 20px;
+    }
+  }
+}
