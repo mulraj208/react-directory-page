@@ -3,7 +3,7 @@ import Search from "../components/directory-page/Search";
 import PriceStats from "../components/directory-page/PriceStats";
 import Pagination from "../components/directory-page/Pagination";
 import CarCardList from "../components/directory-page/CarCardList";
-import { formatNumberWithCommas } from '../utils';
+import { formatNumberWithCommas } from "../utils";
 import "../scss/directory-page.scss";
 
 const API_URL =
@@ -13,14 +13,19 @@ function Directory() {
   const [cars, setCars] = useState([]);
   const [priceStats, setPriceStats] = useState({});
   const [meta, setMeta] = useState({});
+  const [queryParams, setQueryParams] = useState({});
   const totalResults = useMemo(() => {
-    return meta && meta.total
-      ? formatNumberWithCommas(meta.total)
-      : "";
+    return meta && meta.total ? formatNumberWithCommas(meta.total) : "";
   }, [meta]);
 
+  const handlePagination = (page) => {
+    setQueryParams({...queryParams, page});
+  };
+
   useEffect(() => {
-    fetch(API_URL)
+    const stringifyParams = new URLSearchParams(queryParams).toString();
+
+    fetch(`${API_URL}?${stringifyParams}`)
       .then((res) => res.json())
       .then((res) => {
         const { data, price_stats, meta } = res;
@@ -30,7 +35,7 @@ function Directory() {
         setMeta(meta);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [queryParams]);
 
   return (
     <div id="directory-page">
@@ -45,7 +50,7 @@ function Directory() {
         <div className="right-rail">
           <PriceStats data={priceStats} totalResults={totalResults} />
           <CarCardList {...{ cars }} />
-          <Pagination meta={meta} />
+          <Pagination {...{ meta, handlePagination }} />
         </div>
       </div>
     </div>
