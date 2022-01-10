@@ -7,7 +7,7 @@ import { formatNumberWithCommas } from "../utils";
 import "../scss/directory-page.scss";
 
 const API_URL =
-  "http://directory-api-staging.testingpe.com/api/wheels-directory/v1/deals";
+  "//directory-api-staging.testingpe.com/api/wheels-directory/v1/deals";
 
 function Directory() {
   const [cars, setCars] = useState([]);
