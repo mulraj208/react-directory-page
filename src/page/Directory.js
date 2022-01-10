@@ -22,6 +22,10 @@ function Directory() {
     setQueryParams({...queryParams, page});
   };
 
+  const updateQueryParams = (params) => {
+    setQueryParams({...queryParams, ...params});
+  };
+
   useEffect(() => {
     const stringifyParams = new URLSearchParams(queryParams).toString();
 
@@ -45,10 +49,10 @@ function Directory() {
 
       <div className="flex flex-col md:flex-row font-euclidcircularb px-15px">
         <div className="left-rail mb-5 md:mb-0">
-          <Search />
+          <Search updateQueryParams={updateQueryParams} />
         </div>
         <div className="right-rail">
-          <PriceStats data={priceStats} totalResults={totalResults} />
+          <PriceStats data={priceStats} totalResults={totalResults} updateQueryParams={updateQueryParams} />
           <CarCardList {...{ cars }} />
           <Pagination {...{ meta, handlePagination }} />
         </div>

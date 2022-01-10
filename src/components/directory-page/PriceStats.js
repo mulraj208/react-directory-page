@@ -1,6 +1,6 @@
 import React from "react";
 
-function PriceStats({ data, totalResults }) {
+function PriceStats({ data, totalResults, updateQueryParams }) {
   return (
     <div className="bg-FCFCFC border border-solid border-DEDBDB hidden px-5 py-4 mb-5 md:flex justify-between items-center">
       <div>
@@ -25,6 +25,7 @@ function PriceStats({ data, totalResults }) {
           id="directory-sort"
           className="text-left w-full block cursor-pointer font-euclidcircularb font-bold text-sm leading-20px text-181716 border border-solid border-BABEBD rounded-md py-3 px-4 appearance-none"
           defaultValue=""
+          onClick={(e) => updateQueryParams({ sort: e.target.value })}
         >
           <option value="" disabled="disabled">
             Click to sort results

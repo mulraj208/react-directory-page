@@ -1,0 +1,22 @@
+.directory-search {
+  position: relative;
+
+  .search-button {
+    background: linear-gradient(90.11deg, #eb504f 2.71%, #ed805c 99.94%);
+    border-radius: 5px;
+  }
+
+  .zipcode {
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+}
