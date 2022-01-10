@@ -23,6 +23,7 @@ function Search({ updateQueryParams }) {
     }
 
     updateQueryParams({ "filter[type]": defaultTypeOfCar });
+    // eslint-disable-next-line
   }, [defaultTypeOfCar]);
 
   return (
